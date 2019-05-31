@@ -1,2 +1,2 @@
-# manabu
-学ぶ
+# ganbaro
+頑張ろう！！！
