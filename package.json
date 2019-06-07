@@ -7,7 +7,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.17.1"
   },
   "engines": {
     "node": "4.0.0"
@@ -26,7 +26,7 @@
     "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
   ],
   "license": "MIT",
-   "bugs": {
-        "url": ""
-    }
+  "bugs": {
+    "url": ""
+  }
 }

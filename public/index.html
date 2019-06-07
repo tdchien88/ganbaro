@@ -1,31 +1,579 @@
 <!DOCTYPE html>
-<html ng-app="">
+<html >
 <head lang="jp">
-    <base href="./">
-    <meta charset="utf-8">
+<base href="./">
+<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name='viewport'  content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 
+<meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+<meta name="author" content="ChienTD">
+<meta name="keyword" content="">
+<title>頑張ろう</title>
 
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="ChienTD">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>頑張ろう</title>
-
-    <link rel="shortcut icon" href="img/favicon.ico">
+<link rel="shortcut icon" href="img/favicon.ico">
 
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
 
-<script src="js/lib/jquery-1.9.1.js"></script>
-<script src="js/lib/angular.min.js"></script>
-<!-- router end -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+<script src="https://unpkg.com/angularjs-onsenui@1.0.1/dist/angularjs-onsenui.min.js"></script>
+<script src="js/app.js"></script>
+
 
 </head>
-<body  ng-cloak  >
-  <h1>頑張ろう</h1>
-  <p>Name : <input type="text" ng-model="name"></p>
-  <h1>Hello {{name}}</h1>
+<body   >
+
+<ons-splitter ng-controller="PageCtrl">
+  <ons-splitter-side id="menu" side="right" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+        <ons-list-item ng-click="loadPage('home.html')" tappable>
+          Home
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('cards.html')" tappable>
+          Cards
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('list.html')" tappable>
+          List
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('pull-to-refesh.html')" tappable>
+          Pull to refesh
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('carousel.html')" tappable>
+          Carousel
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('dialog-sample.html')" tappable>
+          Dialog
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('popover-sample.html')" tappable>
+          Popover
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('model-sample.html')" tappable>
+          Model
+        </ons-list-item>
+        <ons-list-item ng-click="loadPage('segment.html')" tappable>
+          Segment
+        </ons-list-item>
+
+        <ons-list-item ng-click="loadPage('settings.html')" tappable>
+          Settings
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+
+  <ons-splitter-content>
+    <ons-navigator var="navi" page="home.html"></ons-navigator>
+  </ons-splitter-content>
+
+
+
+</ons-splitter>
+
+<template id="home.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">
+        Splitter+Navigator
+      </div>
+      <div class="right">
+        <ons-toolbar-button ng-click="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <h2>Home</h2>
+    <div style="text-align: center">
+      <br>
+      <ons-button ng-click="navi.pushPage('pageNav1.html')">
+        Push Page
+      </ons-button>
+    </div>
+
+    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+      Swipe left to open the menu!
+    </p>
+  </ons-page>
+</template>
+
+<template id="pageNav1.html">
+  <ons-page id="pageNav1">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Back</ons-back-button>
+      </div>
+      <div class="center"></div>
+      <div class="right">
+        <ons-toolbar-button ng-click="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <div style="text-align: center">
+      <h1>Custom Page</h1>
+      <p>
+        <ons-input modifier="underbar" placeholder="Title" float></ons-input>
+      </p>
+      <ons-button ng-click="customPush()">
+        Push Page
+      </ons-button>
+      <ons-button ng-click="navi.popPage()">
+        Pop Page
+      </ons-button>
+    </div>
+
+    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+      Swipe left to open the menu!
+    </p>
+  </ons-page>
+</template>
+
+<template id="cards.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">
+        Splitter+Navigator
+      </div>
+      <div class="right">
+        <ons-toolbar-button ng-click="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <h2>Cards</h2>
+    <ons-list-title>Card List</ons-list-title>
+    <ons-list>
+      <ons-list-item ng-click="customPush2($event)">Card One</ons-list-item>
+      <ons-list-item ng-click="customPush2($event)">Card Two</ons-list-item>
+      <ons-list-item ng-click="customPush2($event)">Card Three</ons-list-item>
+    </ons-list>
+
+    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+      Swipe left to open the menu!
+    </p>
+  </ons-page>
+</template>
+
+<template id="popover-sample.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Popover</div>
+    </ons-toolbar>
+
+    <p style="text-align: center; margin: 50% 0;">
+      <ons-button ng-click="popover.show($event)">Click me</ons-button>
+    </p>
+  </ons-page>
+</template>
+<template id="popover.html">
+  <ons-popover direction="up" var="popover" cancelable>
+    <div style="padding: 10px; text-align: center;">
+      <p>
+        This is a popover
+      </p>
+      <p>
+        <ons-button ng-click="popover.hide()">Close</ons-button>
+      </p>
+    </div>
+  </ons-popover>
+</template>
+
+<template id="list.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">
+        Splitter+Navigator
+      </div>
+      <div class="right">
+        <ons-toolbar-button ng-click="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <h2>List</h2>
+    <ons-list-title>List</ons-list-title>
+
+    <ons-list>
+      <ons-list-header>Default</ons-list-header>
+      <ons-list-item>Item A</ons-list-item>
+      <ons-list-item>Item B</ons-list-item>
+
+      <ons-list-header>Expandable</ons-list-header>
+      <ons-list-item expandable>
+        Tap to expand
+        <div class="expandable-content">Expandable content</div>
+      </ons-list-item>
+
+      <ons-list-header>Tappable / Ripple</ons-list-header>
+      <ons-list-item tappable>Tap me</ons-list-item>
+
+      <ons-list-header>Chevron</ons-list-header>
+      <ons-list-item modifier="chevron" tappable>Chevron</ons-list-item>
+
+      <ons-list-header>Thumbnails and titles</ons-list-header>
+      <ons-list-item>
+        <div class="left">
+          <img class="list-item__thumbnail" src="http://placekitten.com/g/40/40">
+        </div>
+        <div class="center">
+          <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header>Icons</ons-list-header>
+      <ons-list-item>
+        <div class="left">
+          <ons-icon icon="md-face" class="list-item__icon"></ons-icon>
+        </div>
+        <div class="center">
+          Icon
+        </div>
+      </ons-list-item>
+
+      <ons-list-header>Switch</ons-list-header>
+      <ons-list-item>
+        <div class="center">
+          Turn it on
+        </div>
+        <div class="right">
+          <ons-switch></ons-switch>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header>Switch and icon</ons-list-header>
+      <ons-list-item>
+        <div class="left">
+          <ons-icon icon="md-face" class="list-item__icon"></ons-icon>
+        </div>
+        <div class="center">
+          Icon and switch
+        </div>
+        <div class="right">
+          <ons-switch></ons-switch>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header>No divider</ons-list-header>
+      <ons-list-item modifier="nodivider">Item A</ons-list-item>
+      <ons-list-item modifier="nodivider">Item B</ons-list-item>
+
+      <ons-list-header>Long divider</ons-list-header>
+      <ons-list-item modifier="longdivider">Item A</ons-list-item>
+      <ons-list-item modifier="longdivider">Item B</ons-list-item>
+    </ons-list>
+
+    <br />
+
+    <ons-list modifier="inset">
+      <ons-list-header>Inset list</ons-list-header>
+      <ons-list-item modifier="longdivider">Item A</ons-list-item>
+      <ons-list-item modifier="longdivider">Item B</ons-list-item>
+    </ons-list>
+
+    <br />
+
+  </ons-page>
+</template>
+
+<template id="pull-to-refesh.html">
+  <ons-page ng-controller="PullToRefeshController as page">
+    <ons-pull-hook ng-action="page.load($done)" var="loader">
+      <span ng-switch="loader.state">
+        <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon> Pull down to refresh</span>
+        <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon> Release to refresh</span>
+        <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Loading data...</span>
+      </span>
+    </ons-pull-hook>
+
+    <ons-toolbar>
+      <div class="center">Pull to refresh</div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-item ng-repeat="item in page.items">
+        Item #{{ item }}
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</template>
+
+<template id="carousel.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="carousel.prev()">
+          <ons-icon icon="md-chevron-left"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Carousel</div>
+      <div class="right">
+        <ons-toolbar-button ng-click="carousel.next()">
+          <ons-icon icon="md-chevron-right"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <ons-carousel var="carousel" ons-postchange="console.log('Changed to ' + $event.activeIndex)" fullscreen swipeable auto-scroll overscrollable>
+      <ons-carousel-item style="background-color: #085078;">
+        <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
+          BLUE
+        </div>
+      </ons-carousel-item>
+      <ons-carousel-item style="background-color: #373B44;">
+        <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
+          DARK
+        </div>
+      </ons-carousel-item>
+      <ons-carousel-item style="background-color: #D38312;">
+        <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
+          ORANGE
+        </div>
+      </ons-carousel-item>
+    </ons-carousel>
+  </ons-page>
+</template>
+
+<template id="dialog-sample.html">
+  <ons-page ng-controller="DialogController as page">
+    <ons-toolbar>
+      <div class="center">Dialogs</div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-header>Showing dialogs</ons-list-header>
+      <ons-list-item tappable ng-click="dialog.show()">Simple dialog</ons-list-item>
+      <ons-list-item tappable ng-click="alertDialog.show()">Alert dialog</ons-list-item>
+      <ons-list-item tappable ng-click="page.showDialog()">From template</ons-list-item>
+      <ons-list-item tappable ng-click="toast.toggle()">Toggle toast</ons-list-item>
+      <ons-list-header>Notifications</ons-list-header>
+      <ons-list-item tappable ng-click="ons.notification.alert('Hello, world')">Alert</ons-list-item>
+      <ons-list-item tappable ng-click="ons.notification.confirm({message: 'Are you ready?'})">Confirmation</ons-list-item>
+      <ons-list-item tappable ng-click="ons.notification.prompt({message: 'What is your name?'})">Prompt</ons-list-item>
+    </ons-list>
+  </ons-page>
+
+</template>
+
+<template id="dialog.html">
+  <ons-dialog var="dialog">
+    <div style="text-align: center; padding: 10px;">
+      <p>
+        This is a dialog.
+      </p>
+
+      <p>
+        <ons-button ng-click="dialog.hide()">Close</ons-button>
+      </p>
+    </div>
+  </ons-dialog>
+</template>
+<template id="dialog-alert.html">
+  <ons-alert-dialog var="alertDialog">
+    <div class="alert-dialog-title">Warning!</div>
+    <div class="alert-dialog-content">
+      An error has occurred!
+    </div>
+    <div class="alert-dialog-footer">
+      <button class="alert-dialog-button" ng-click="alertDialog.hide()">Cancel</button>
+      <button class="alert-dialog-button" ng-click="alertDialog.hide()">OK</button>
+    </div>
+  </ons-alert-dialog>
+</template>
+<template id="dialog-3.html">
+  <ons-dialog id="dialog-3">
+    <div style="text-align: center; padding: 10px;">
+      <p>
+        This dialog was created from a template.
+      <p>
+
+      <p>
+        <ons-button ng-click="page.dialog.hide()">Close</ons-button>
+      </p>
+    </div>
+  </ons-dialog>
+</template>
+<template id="dialog-toast.html">
+  <ons-toast var="toast">
+    This is an Onsen Toast!<button>Hoge</button>
+  </ons-toast>
+</template>
+
+
+
+
+<template id="model-sample.html">
+  <ons-page>
+  <ons-toolbar>
+    <div class="center">Modal</div>
+  </ons-toolbar>
+
+  <p style="text-align: center">
+    <ons-button ng-click="myModal.show()">Show modal</ons-button>
+  </p>
+</ons-page>
+</template>
+<template id="model.html">
+<ons-modal var="myModal" direction="up">
+  <div style="text-align: center">
+    <p>
+      <ons-button ng-click="myModal.hide()">Hide modal</ons-button>
+    </p>
+  </div>
+</ons-modal>
+</template>
+
+
+
+<!-- segment -->
+<template id="segment.html">
+  <ons-page ng-controller="SegmentController">
+    <ons-toolbar>
+      <div class="center">
+        <ons-segment id="segment" tabbar-id="tabbar" style="width: 180px">
+          <button>Page 1</button>
+          <button>Page 2</button>
+          <button>Page 3</button>
+        </ons-segment>
+      </div>
+    </ons-toolbar>
+
+    <ons-tabbar id="tabbar">
+      <ons-tab page="page1.html" active></ons-tab>
+      <ons-tab page="page2.html"></ons-tab>
+      <ons-tab page="page3.html"></ons-tab>
+    </ons-tabbar>
+  </ons-page>
+</template>
+<template id="page1.html">
+  <ons-page>
+    <h2>Page1</h2>
+    <ons-button ng-click="changeTab()">Change tab via tabbar</ons-button>
+    <ons-button ng-click="changeButton()">Change tab via segment</ons-button>
+    <ons-button ng-click="logIndexes()">Log current button index</ons-button>
+  </ons-page>
+</template>
+<template id="page2.html">
+  <ons-page>
+    <h2>Page2</h2>
+    <ons-button ng-click="logIndexes()">Log current button index</ons-button>
+  </ons-page>
+</template>
+<template id="page3.html">
+  <ons-page>
+    <h2>Page3</h2>
+    <ons-button ng-click="logIndexes()">Log current button index</ons-button>
+  </ons-page>
+</template>
+<!-- segment -->
+
+<template id="pageNav2.html">
+  <ons-page id="pageNav2">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Back</ons-back-button>
+      </div>
+      <div class="right">
+        <ons-toolbar-button ng-click="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <ons-card>
+      <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">
+      <div class="title"></div>
+      <div class="content">
+        <div>
+          <ons-button>
+            <ons-icon icon="ion-thumbsup"></ons-icon>
+          </ons-button>
+          <ons-button>
+            <ons-icon icon="ion-share"></ons-icon>
+          </ons-button>
+        </div>
+        <ons-list>
+          <ons-list-header>Bindings</ons-list-header>
+          <ons-list-item>Vue</ons-list-item>
+          <ons-list-item>Angular</ons-list-item>
+          <ons-list-item>React</ons-list-item>
+        </ons-list>
+      </div>
+    </ons-card>
+
+    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+      Swipe left to open the menu!
+    </p>
+  </ons-page>
+</template>
+
+<template id="settings.html">
+  <ons-page  ng-controller="SettingCtrl">
+    <ons-toolbar>
+      <div class="center">
+        Splitter+Navigator
+      </div>
+      <div class="right">
+        <ons-toolbar-button ng-click="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <h2>Settings</h2>
+
+    <ons-list>
+      <ons-list-header>Switch</ons-list-header>
+      <ons-list-item>
+        <div class="center">
+          Switch is {{ data.switch ? 'on' : 'off' }}
+        </div>
+        <div class="right">
+          <ons-switch ng-model="data.switch"></ons-switch>
+        </div>
+      </ons-list-item>
+      <ons-list-item>
+        <div class="center">
+          Switch is {{ data.switch ? 'disabled' :'enabled' }}
+        </div>
+        <div class="right">
+          <ons-switch ng-disabled="data.switch"></ons-switch>
+        </div>
+      </ons-list-item>
+
+      <ons-list-header>Slider</ons-list-header>
+      <ons-list-item>
+        <ons-range ng-model="data.range" style="width: 100%; padding-right: 10px"></ons-range>
+      </ons-list-item>
+      <ons-list-item>
+        Value is {{ data.range }}
+      </ons-list-item>
+
+      <ons-list-header>Text input</ons-list-header>
+      <ons-list-item>
+        <ons-if platform="ios" class="left">
+          Name
+        </ons-if>
+        <div class="center">
+          <ons-input placeholder="Input name" float ng-model="data.name"></ons-input>
+        </div>
+      </ons-list-item>
+      <ons-list-item>
+        Hello there, {{ data.name }}!
+      </ons-list-item>
+
+    </ons-list>
+  </ons-page>
+</template>
+
 </body>
 </html>
